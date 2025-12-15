@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    .portfolio-wrapper {
+      background: linear-gradient(135deg, #6B46C1 0%, #9F7AEA 25%, #ffffff 50%, #E9D5FF 75%, #7C3AED 100%);
+      background-size: 400% 400%;
+      animation: gradientFlow 15s ease infinite;
+    }
+    
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 8px 32px 0 rgba(107, 70, 193, 0.2);
+    }
+    
+    .project-card {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(107, 70, 193, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(107, 70, 193, 0.3);
+    }
+    
+    .nav-link {
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #ffffff;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #6B46C1, #7C3AED);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px rgba(107, 70, 193, 0.4);
+    }
+    
+    .floating-shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+      animation: float 20s infinite ease-in-out;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(50px, -50px) rotate(90deg); }
+      50% { transform: translate(-30px, -100px) rotate(180deg); }
+      75% { transform: translate(-80px, -50px) rotate(270deg); }
+    }
+    
+    .skill-badge {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      transition: all 0.3s ease;
+    }
+    
+    .skill-badge:hover {
+      transform: translateY(-4px) scale(1.05);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
+      box-shadow: 0 8px 20px rgba(107, 70, 193, 0.3);
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .animate-in {
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+    
+    .hero-gradient-text {
+      background: linear-gradient(135deg, #6B46C1, #E879F9, #A78BFA);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s infinite;
+      background-size: 200% 200%;
+    }
+    
+    @keyframes shimmer {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    
+    .decorative-line {
+      height: 4px;
+      background: linear-gradient(90deg, transparent, #E879F9, transparent);
+      animation: lineGlow 2s infinite;
+    }
+    
+    @keyframes lineGlow {
+      0%, 100% { opacity: 0.5; transform: scaleX(1); }
+      50% { opacity: 1; transform: scaleX(1.1); }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div class="portfolio-wrapper w-full h-full overflow-auto"><!-- Navigation -->
+   <nav class="glass-card sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4">
+     <div class="flex justify-between items-center">
+      <h1 id="nav-name" class="text-2xl font-bold text-white">Your Name</h1>
+      <div class="flex gap-8"><a href="#about" class="nav-link text-white font-medium">About</a> <a href="#projects" class="nav-link text-white font-medium">Projects</a> <a href="#contact" class="nav-link text-white font-medium">Contact</a>
+      </div>
+     </div>
+    </div>
+   </nav><!-- Hero Section -->
+   <section class="max-w-6xl mx-auto px-6 py-24 text-center relative"><!-- Floating decorative shapes -->
+    <div class="floating-shape bg-purple-600 w-64 h-64 top-10 -left-20" style="animation-delay: 0s;"></div>
+    <div class="floating-shape bg-pink-400 w-48 h-48 top-32 -right-16" style="animation-delay: 2s;"></div>
+    <div class="floating-shape bg-purple-400 w-56 h-56 bottom-20 left-1/4" style="animation-delay: 4s;"></div>
+    <div class="glass-card rounded-3xl p-12 relative z-10 animate-in">
+     <div class="mb-6">
+      <div class="inline-block px-6 py-2 bg-purple-100 bg-opacity-30 rounded-full mb-6"><span class="text-purple-900 font-semibold">✨ Welcome to my portfolio</span>
+      </div>
+     </div>
+     <h2 id="hero-name" class="text-7xl font-bold hero-gradient-text mb-4">Wendy Carmen</h2>
+     <div class="decorative-line w-32 mx-auto mb-6"></div>
+     <p id="hero-tagline" class="text-2xl text-purple-700 mb-8 font-light">Creative Developer &amp; Designer</p><!-- Skill badges -->
+     <div class="flex flex-wrap justify-center gap-3 mb-8"><span class="skill-badge px-4 py-2 rounded-full text-sm text-purple-900 font-semibold">UI/UX Design</span> <span class="skill-badge px-4 py-2 rounded-full text-sm text-purple-900 font-semibold">Web Development</span> <span class="skill-badge px-4 py-2 rounded-full text-sm text-purple-900 font-semibold">Creative Solutions</span>
+     </div><button class="btn-primary text-white px-10 py-4 rounded-full font-semibold text-lg shadow-xl"> View My Work ✨ </button>
+    </div>
+   </section><!-- About Section -->
+   <section id="about" class="max-w-6xl mx-auto px-6 py-16">
+    <div class="glass-card rounded-3xl p-12 relative overflow-hidden">
+     <div class="floating-shape bg-purple-300 w-40 h-40 -top-10 -right-10" style="animation-delay: 1s;"></div>
+     <div class="relative z-10">
+      <div class="text-center mb-8"><span class="text-6xl mb-4 inline-block animate-in">👋</span>
+       <h3 id="about-heading" class="text-5xl font-bold text-purple-900 mb-4">About Me</h3>
+       <div class="decorative-line w-24 mx-auto"></div>
+      </div>
+      <p id="about-description" class="text-xl text-purple-800 leading-relaxed text-center max-w-3xl mx-auto mb-8">I'm a passionate creative professional who loves building beautiful and functional digital experiences. With expertise in design and development, I bring ideas to life through clean code and thoughtful design.</p><!-- Stats -->
+      <div class="grid grid-cols-3 gap-6 mt-12">
+       <div class="text-center p-6 bg-white bg-opacity-20 rounded-2xl backdrop-blur-sm">
+        <div class="text-4xl font-bold text-purple-900 mb-2">
+         50+
+        </div>
+        <div class="text-purple-800 font-medium">
+         Projects
+        </div>
+       </div>
+       <div class="text-center p-6 bg-white bg-opacity-20 rounded-2xl backdrop-blur-sm">
+        <div class="text-4xl font-bold text-purple-900 mb-2">
+         5+
+        </div>
+        <div class="text-purple-800 font-medium">
+         Years Experience
+        </div>
+       </div>
+       <div class="text-center p-6 bg-white bg-opacity-20 rounded-2xl backdrop-blur-sm">
+        <div class="text-4xl font-bold text-purple-900 mb-2">
+         100%
+        </div>
+        <div class="text-purple-800 font-medium">
+         Client Satisfaction
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Projects Section -->
+   <section id="projects" class="max-w-6xl mx-auto px-6 py-16">
+    <div class="text-center mb-16">
+     <h3 id="projects-heading" class="text-5xl font-bold text-purple-900 mb-4">My Work</h3>
+     <div class="decorative-line w-24 mx-auto mb-4"></div>
+     <p class="text-purple-800 text-lg">Here are some of my recent projects</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+     <div class="project-card rounded-3xl p-0 overflow-hidden">
+      <div class="w-full h-56 bg-gradient-to-br from-purple-400 via-pink-400 to-purple-600 relative flex items-center justify-center group"><span class="text-7xl transform group-hover:scale-110 transition-transform duration-300">🎨</span>
+       <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+      </div>
+      <div class="p-6">
+       <div class="flex items-center gap-2 mb-3"><span class="w-2 h-2 bg-purple-600 rounded-full"></span> <span class="text-sm text-purple-700 font-semibold uppercase tracking-wide">Design</span>
+       </div>
+       <h4 class="text-2xl font-bold text-purple-900 mb-3">Creative Portfolio</h4>
+       <p class="text-purple-700 mb-4 leading-relaxed">A stunning visual portfolio showcasing modern design principles and creative storytelling.</p><button class="text-purple-900 font-semibold hover:text-purple-600 transition-colors">View Project →</button>
+      </div>
+     </div>
+     <div class="project-card rounded-3xl p-0 overflow-hidden">
+      <div class="w-full h-56 bg-gradient-to-br from-purple-500 via-indigo-500 to-purple-700 relative flex items-center justify-center group"><span class="text-7xl transform group-hover:scale-110 transition-transform duration-300">💻</span>
+       <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+      </div>
+      <div class="p-6">
+       <div class="flex items-center gap-2 mb-3"><span class="w-2 h-2 bg-indigo-600 rounded-full"></span> <span class="text-sm text-purple-700 font-semibold uppercase tracking-wide">Development</span>
+       </div>
+       <h4 class="text-2xl font-bold text-purple-900 mb-3">Web Application</h4>
+       <p class="text-purple-700 mb-4 leading-relaxed">A powerful web app built with cutting-edge technologies and seamless user experience.</p><button class="text-purple-900 font-semibold hover:text-purple-600 transition-colors">View Project →</button>
+      </div>
+     </div>
+     <div class="project-card rounded-3xl p-0 overflow-hidden">
+      <div class="w-full h-56 bg-gradient-to-br from-purple-600 via-fuchsia-500 to-purple-800 relative flex items-center justify-center group"><span class="text-7xl transform group-hover:scale-110 transition-transform duration-300">🚀</span>
+       <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+      </div>
+      <div class="p-6">
+       <div class="flex items-center gap-2 mb-3"><span class="w-2 h-2 bg-fuchsia-600 rounded-full"></span> <span class="text-sm text-purple-700 font-semibold uppercase tracking-wide">Innovation</span>
+       </div>
+       <h4 class="text-2xl font-bold text-purple-900 mb-3">Startup Platform</h4>
+       <p class="text-purple-700 mb-4 leading-relaxed">An innovative solution transforming complex challenges into elegant user experiences.</p><button class="text-purple-900 font-semibold hover:text-purple-600 transition-colors">View Project →</button>
+      </div>
+     </div>
+    </div>
+   </section><!-- Contact Section -->
+   <section id="contact" class="max-w-6xl mx-auto px-6 py-16 pb-24">
+    <div class="glass-card rounded-3xl p-16 text-center relative overflow-hidden">
+     <div class="floating-shape bg-pink-400 w-48 h-48 -bottom-10 -left-10" style="animation-delay: 3s;"></div>
+     <div class="floating-shape bg-purple-400 w-40 h-40 -top-10 -right-10" style="animation-delay: 5s;"></div>
+     <div class="relative z-10">
+      <div class="inline-block mb-6"><span class="text-6xl animate-in">💌</span>
+      </div>
+      <h3 id="contact-heading" class="text-5xl font-bold text-purple-900 mb-4">Get In Touch</h3>
+      <div class="decorative-line w-24 mx-auto mb-6"></div>
+      <p id="contact-description" class="text-xl text-purple-800 mb-10 max-w-2xl mx-auto leading-relaxed">Let's work together on your next project. I'd love to hear from you!</p>
+      <div class="flex flex-wrap justify-center gap-4 mb-8"><a href="mailto:hello@wendycarmen.com" class="skill-badge px-6 py-3 rounded-full text-purple-900 font-semibold flex items-center gap-2 hover:scale-105 transition-transform"> <span>📧</span> Email Me </a> <a href="#" target="_blank" rel="noopener noreferrer" class="skill-badge px-6 py-3 rounded-full text-purple-900 font-semibold flex items-center gap-2 hover:scale-105 transition-transform"> <span>💼</span> LinkedIn </a> <a href="#" target="_blank" rel="noopener noreferrer" class="skill-badge px-6 py-3 rounded-full text-purple-900 font-semibold flex items-center gap-2 hover:scale-105 transition-transform"> <span>🐙</span> GitHub </a>
+      </div><button class="btn-primary text-white px-12 py-5 rounded-full font-semibold text-lg shadow-2xl"> Start a Conversation ✨ </button>
+     </div>
+    </div><!-- Footer -->
+    <div class="mt-16 text-center">
+     <p class="text-purple-800 text-sm">© 2024 Wendy Carmen. Designed with 💜 and creativity</p>
+    </div>
+   </section>
+  </div>
+  <script>
+    const defaultConfig = {
+      background_color: "#6B46C1",
+      surface_color: "#ffffff",
+      text_color: "#581C87",
+      primary_action_color: "#7C3AED",
+      secondary_action_color: "#9F7AEA",
+      font_family: "system-ui",
+      font_size: 16,
+      site_name: "Wendy Carmen",
+      site_tagline: "Creative Developer & Designer",
+      about_title: "About Me",
+      about_text: "I'm a passionate creative professional who loves building beautiful and functional digital experiences. With expertise in design and development, I bring ideas to life through clean code and thoughtful design.",
+      projects_title: "My Work",
+      contact_title: "Get In Touch",
+      contact_text: "Let's work together on your next project. I'd love to hear from you!"
+    };
+
+    async function onConfigChange(config) {
+      const baseSize = config.font_size || defaultConfig.font_size;
+      const customFont = config.font_family || defaultConfig.font_family;
+      const baseFontStack = 'system-ui, -apple-system, sans-serif';
+      
+      // Update text content
+      document.getElementById('nav-name').textContent = config.site_name || defaultConfig.site_name;
+      document.getElementById('hero-name').textContent = config.site_name || defaultConfig.site_name;
+      document.getElementById('hero-tagline').textContent = config.site_tagline || defaultConfig.site_tagline;
+      document.getElementById('about-heading').textContent = config.about_title || defaultConfig.about_title;
+      document.getElementById('about-description').textContent = config.about_text || defaultConfig.about_text;
+      document.getElementById('projects-heading').textContent = config.projects_title || defaultConfig.projects_title;
+      document.getElementById('contact-heading').textContent = config.contact_title || defaultConfig.contact_title;
+      document.getElementById('contact-description').textContent = config.contact_text || defaultConfig.contact_text;
+      
+      // Update colors
+      const backgroundColor = config.background_color || defaultConfig.background_color;
+      const surfaceColor = config.surface_color || defaultConfig.surface_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const primaryActionColor = config.primary_action_color || defaultConfig.primary_action_color;
+      
+      document.querySelector('.portfolio-wrapper').style.background = `linear-gradient(135deg, ${backgroundColor} 0%, ${primaryActionColor} 25%, ${surfaceColor} 50%, #E9D5FF 75%, ${primaryActionColor} 100%)`;
+      
+      document.querySelectorAll('.text-purple-900').forEach(el => {
+        el.style.color = textColor;
+      });
+      
+      document.querySelectorAll('.text-purple-800, .text-purple-700').forEach(el => {
+        el.style.color = textColor;
+        el.style.opacity = '0.9';
+      });
+      
+      document.querySelectorAll('.btn-primary').forEach(el => {
+        el.style.background = `linear-gradient(135deg, ${backgroundColor}, ${primaryActionColor})`;
+      });
+      
+      // Update fonts
+      document.getElementById('nav-name').style.fontFamily = `${customFont}, ${baseFontStack}`;
+      document.getElementById('hero-name').style.fontFamily = `${customFont}, ${baseFontStack}`;
+      document.getElementById('hero-name').style.fontSize = `${baseSize * 3.75}px`;
+      document.getElementById('hero-tagline').style.fontFamily = `${customFont}, ${baseFontStack}`;
+      document.getElementById('hero-tagline').style.fontSize = `${baseSize * 1.5}px`;
+      document.getElementById('about-heading').style.fontFamily = `${customFont}, ${baseFontStack}`;
+      document.getElementById('about-heading').style.fontSize = `${baseSize * 2.5}px`;
+      document.getElementById('about-description').style.fontFamily = `${customFont}, ${baseFontStack}`;
+      document.getElementById('about-description').style.fontSize = `${baseSize * 1.125}px`;
+      document.getElementById('projects-heading').style.fontFamily = `${customFont}, ${baseFontStack}`;
+      document.getElementById('projects-heading').style.fontSize = `${baseSize * 2.5}px`;
+      document.getElementById('contact-heading').style.fontFamily = `${customFont}, ${baseFontStack}`;
+      document.getElementById('contact-heading').style.fontSize = `${baseSize * 2.5}px`;
+      document.getElementById('contact-description').style.fontFamily = `${customFont}, ${baseFontStack}`;
+      document.getElementById('contact-description').style.fontSize = `${baseSize * 1.125}px`;
+      
+      document.querySelectorAll('.nav-link').forEach(el => {
+        el.style.fontFamily = `${customFont}, ${baseFontStack}`;
+        el.style.fontSize = `${baseSize}px`;
+      });
+      
+      document.querySelectorAll('.btn-primary').forEach(el => {
+        el.style.fontFamily = `${customFont}, ${baseFontStack}`;
+        el.style.fontSize = `${baseSize}px`;
+      });
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => {
+              config.background_color = value;
+              window.elementSdk.setConfig({ background_color: value });
+            }
+          },
+          {
+            get: () => config.surface_color || defaultConfig.surface_color,
+            set: (value) => {
+              config.surface_color = value;
+              window.elementSdk.setConfig({ surface_color: value });
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              config.text_color = value;
+              window.elementSdk.setConfig({ text_color: value });
+            }
+          },
+          {
+            get: () => config.primary_action_color || defaultConfig.primary_action_color,
+            set: (value) => {
+              config.primary_action_color = value;
+              window.elementSdk.setConfig({ primary_action_color: value });
+            }
+          },
+          {
+            get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+            set: (value) => {
+              config.secondary_action_color = value;
+              window.elementSdk.setConfig({ secondary_action_color: value });
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => {
+            config.font_family = value;
+            window.elementSdk.setConfig({ font_family: value });
+          }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (value) => {
+            config.font_size = value;
+            window.elementSdk.setConfig({ font_size: value });
+          }
+        }
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ["site_name", config.site_name || defaultConfig.site_name],
+        ["site_tagline", config.site_tagline || defaultConfig.site_tagline],
+        ["about_title", config.about_title || defaultConfig.about_title],
+        ["about_text", config.about_text || defaultConfig.about_text],
+        ["projects_title", config.projects_title || defaultConfig.projects_title],
+        ["contact_title", config.contact_title || defaultConfig.contact_title],
+        ["contact_text", config.contact_text || defaultConfig.contact_text]
+      ]);
+    }
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Initialize SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ae3c1efa7e0b9fc',t:'MTc2NTc3ODgxMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
